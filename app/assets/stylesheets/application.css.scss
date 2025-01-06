@@ -1,0 +1,134 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@import 'bootstrap';
+@import "font-awesome";
+
+#sidebar {
+  background-color: RGB(228, 124, 62);
+  // position: absolute;
+  // display: inline-block;
+}
+#app_body {
+  //display: inline-block;
+}
+#page_content {
+  //display: inline-block;
+  //position:relative;
+}
+
+#navbarTogglerDemo02 {
+
+  ul {
+    text-align: center;
+    margin: 0 auto;
+
+    #home_link {
+      padding-right: 80px;
+    }
+    li {
+      padding-bottom: 2px;
+      p {
+        margin-bottom: initial;
+      }
+      .nav-link {
+        display: inline;
+      } // .nav-link
+    } // li
+
+  } // ul
+} // #navbarTogglerDemo02
+
+
+
+#sign_up {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10em;
+
+
+  #sign_up_form {
+    //background-color: red;
+    position: relative;
+    // text-align: center;
+    display: block;
+    .title-wrapper{
+      // position: absolute;
+      text-align: left;
+    }
+    .title-wrapper h3 p {
+
+      float: left !important;
+    }
+
+    .field input {
+      text-align: center;
+      width: 250px;
+      color: RGB(128, 127,	127);
+      background-color: RGB(223, 234, 246);
+      border-radius: 3px;
+    }
+
+    .actions input {
+      width: 250px;
+    } // .actions input
+  } // #sign_up_form
+} // #sign_up
+
+
+#sign_in {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-top: 10em;
+
+  #sign_in_form {
+    //background-color: red;
+
+    // text-align: center;
+    display: block;
+    .title-wrapper{
+      // position: absolute;
+      text-align: left;
+    }
+    .title-wrapper h3 p {
+
+      float: left !important;
+    }
+
+    .field input {
+      text-align: center;
+      width: 250px;
+      color: RGB(128, 127,	127);
+      background-color: RGB(223, 234, 246);
+      border-radius: 3px;
+    }
+    #login {
+      background-color: RGB(40, 48, 104);
+      color: white;
+      border-radius: 3px;
+    }
+    #remember_me input {
+      width: initial !important;
+    }
+
+    .actions input {
+      width: 250px;
+    } // .actions input
+  } // #sign_in_form
+} // #sign_in
