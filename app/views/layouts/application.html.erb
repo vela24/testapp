@@ -11,7 +11,19 @@
   </head>
 
   <body>
-    <%= render 'shared/header' %>
+  <% if user_signed_in? %>
+  <%= render 'shared/header' %>
+    <div class="row">
+      <div class="col-md-2">
+        <%= render 'shared/sidebar' %>
+      </div>
+      <div class="col-md-10" id="page_content">
+        <%= yield %>
+      </div>
+    </div>
+  <% else %>
     <%= yield %>
+  <% end %>
+
   </body>
 </html>

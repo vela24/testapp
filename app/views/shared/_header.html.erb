@@ -22,7 +22,7 @@
 
       <% if user_signed_in? %>
         <i class="fa-solid fa-right-from-bracket"></i>
-        <%= link_to "Log off", destroy_user_session_path, class: "btn mr-2",method: :delete, data: { turbo_method: :delete } %>
+        <%= link_to "Log off", destroy_user_session_path, class: "btn mr-2", method: :delete, data: { turbo_method: :delete } %>
       <% else %>
         <a class="btn btn-outline-primary" href="#">Login</a>
       <% end %>
