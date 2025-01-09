@@ -78,6 +78,11 @@ Rails.application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
+  # Setup reset password host parameter
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_controller.asset_host = "https://sheltered-chamber-99174-f75c82d999a8.herokuapp.com"
+
+
   # Use a different logger for distributed setups.
   # require "syslog/logger"
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new "app-name")
