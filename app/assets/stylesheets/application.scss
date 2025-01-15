@@ -75,7 +75,7 @@
       float: left !important;
     }
 
-    .field input {
+    .field input:not([type='checkbox']) {
       text-align: center;
       width: 250px;
       color: RGB(128, 127,	127);

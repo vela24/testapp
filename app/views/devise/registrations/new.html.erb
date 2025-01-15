@@ -29,6 +29,16 @@
           <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "confirm password" %>
         </div>
 
+        <div class="field pt-1">
+          <%= f.label :tos_agreement do %>
+            <%= f.check_box :tos_agreement %>
+            I agree to the <%= link_to 'Terms of Service', home_terms_of_service_path, target: '_blank' %>
+          <% end %>
+
+        </div>
+
+
+
         <div class="actions pt-3">
           <%= f.submit "Register", class: "btn btn-primary btn-block" %>
         </div>
