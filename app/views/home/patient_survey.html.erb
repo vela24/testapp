@@ -1,0 +1,8 @@
+<h1>Survey Form</h1>
+
+<%= form_for :anything, url: "submit_form" do |f| %>
+  <%= f.text_field :name, :required => true %>
+  <%= f.text_field :car, :required => true %>
+  <%= f.text_field :address, :required => true %>
+  <%= f.submit %>
+<% end %>

@@ -52,7 +52,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up.
   def after_sign_up_path_for(resource)
-    super(resource)
+    home_patient_survey_path
+    #super(resource)
   end
 
   # The path used after sign up for inactive accounts.
