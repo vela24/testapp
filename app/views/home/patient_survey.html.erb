@@ -1,8 +1,39 @@
-<h1>Survey Form</h1>
+<div class="container-fluid">
+  <h1>Survey Form</h1>
 
-<%= form_for :anything, url: "submit_form" do |f| %>
-  <%= f.text_field :name, :required => true %>
-  <%= f.text_field :car, :required => true %>
-  <%= f.text_field :address, :required => true %>
-  <%= f.submit %>
-<% end %>
+  <%= form_for :anything, url: "submit_form" do |f| %>
+    <div class="form-group row">
+      <div class="col">
+        <%= f.text_field :community_name, class: "form-control", placeholder: "Community Name", :required => true %>
+      </div>
+      <div class="col-md-3">
+        <%= f.text_field :id_number, class: "form-control", placeholder: "ID#", :required => true %>
+      </div>
+      <div class="col-md-3">
+        <%= f.text_field :move_in_date, class: "form-control", placeholder: "Move in Date", :required => true %>
+      </div>
+      <div class="col-md-3">
+        <%= f.text_field :pharmacy_name, class: "form-control", placeholder: "Pharmacy Name", :required => true %>
+        </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-md-6">
+        <%= f.label :primary_pharmacy do %>
+          <%= f.check_box :primary_pharmacy %>
+          Check here if we are your primary pharmacy
+        <% end %>
+      </div>
+      <div class="col-md-6">
+        <%= f.label :emergency_pharmacy do %>
+          <%= f.check_box :emergency_pharmacy %>
+          Check here if we are your "emergency only" pharmacy
+        <% end %>
+      </div>
+    </div>
+      <%= f.text_field :car, :required => true %>
+      <%= f.text_field :address, :required => true %>
+      <%= f.submit %>
+
+  <% end %>
+
+</div>
