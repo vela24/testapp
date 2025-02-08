@@ -81,7 +81,7 @@ Rails.application.configure do
 
   # Setup reset password host parameter
   # config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.default_url_options = { host: 'https://sheltered-chamber-99174-f75c82d999a8.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'https://sheltered-chamber-99174-f75c82d999a8.herokuapp.com' }
   # config.action_controller.asset_host = "https://sheltered-chamber-99174-f75c82d999a8.herokuapp.com"
 
 
