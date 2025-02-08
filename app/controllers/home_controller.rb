@@ -14,7 +14,8 @@ class HomeController < ApplicationController
     # redirect_to root_path
   end
   def submit_form
-    PatientSurveyMailer.signup_survey(params[:anything]).deliver
+    # PatientSurveyMailer.signup_survey(params[:anything]).deliver
+    TestMailer.hello(params["anything"]).deliver
     redirect_to root_path
   end
 end
