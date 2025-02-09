@@ -67,7 +67,7 @@ Rails.application.configure do
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
@@ -80,9 +80,19 @@ Rails.application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   # Setup reset password host parameter
-  # config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = { host: 'https://sheltered-chamber-99174-f75c82d999a8.herokuapp.com' }
   # config.action_controller.asset_host = "https://sheltered-chamber-99174-f75c82d999a8.herokuapp.com"
+
+  ActionMailer::Base.smtp_settings = {
+    :user_name => ENV['MAILGUN_SMTP_LOGIN'], # This is the string literal 'apikey', NOT the ID of your API key
+    :password => ENV['MAILGUN_SMTP_PASSWORD'], # This is the secret sendgrid API key which was issued during API key creation
+    :domain => 'sheltered-chamber-99174-f75c82d999a8.herokuapp.com',
+    :address => ENV['MAILGUN_SMTP_SERVER'],
+    :port => ENV['MAILGUN_SMTP_PORT'],
+    :authentication => :plain
+    # :enable_starttls_auto => true
+  }
 
 
   # Use a different logger for distributed setups.
