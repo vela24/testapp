@@ -7,7 +7,7 @@ gem "sassc-rails"
 gem "font-awesome-sass", "~> 6.1"
 gem "jquery-rails"
 gem "dotenv-rails"
-gem 'postmark-rails'
+# gem 'postmark-rails'
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.8", ">= 7.0.8.6"
 
