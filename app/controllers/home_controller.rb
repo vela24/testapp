@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   skip_before_action :authenticate_user!, only: [:terms_of_service, :patient_survey, :submit_form]
+  protect_from_forgery with: :null_session, only: [:submit_form]
 
   def index
   end
