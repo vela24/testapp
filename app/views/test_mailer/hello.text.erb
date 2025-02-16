@@ -1,9 +1,5 @@
-PatientSurvey#signup_survey11111
+PatientSurvey#signup_survey
 <% @greeting.each do |k, v| %>
-simple_format(<%= k %>: <%= v %><%= "\r\n" %>)
---------------------------------------------------------------
-simple_format("<p>We want to put a paragraph...</p>\n\n<p>...right there.</p>")
---------------------------------------------------------------
-simple_format(<%= k %>: <%= v %>\r\n)
+  <%= k %>: <%= v %>
 <% end %>
   find me in app/views/patient_survey_mailer/signup_survey.text.erb
