@@ -16,8 +16,8 @@ class HomeController < ApplicationController
   end
   def submit_form
     # PatientSurveyMailer.signup_survey(params[:anything]).deliver
-    p "checking current user in controller ***************************"
-    p current_user
+    # p "checking current user in controller ***************************"
+    # p current_user
     TestMailer.hello(params["anything"], current_user).deliver
     redirect_to root_path
   end
