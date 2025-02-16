@@ -6,10 +6,10 @@ class PatientSurveyMailer < ApplicationMailer
   #   en.patient_survey_mailer.signup_survey.subject
   #
   def signup_survey(params)
-    # params.each do |k, v|
-    #   p "checking key ************************"
-    #   p k
-    # end
+    params.each do |k, v|
+      p "checking key ************************"
+      p k
+    end
     @greeting = params
 
     mail to: "to@example.org"
