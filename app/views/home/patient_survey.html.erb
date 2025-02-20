@@ -1,8 +1,8 @@
-<div class="container-fluid">
-  <h1>Survey Form</h1>
+<div class="container-fluid survey_form_control">
+  <h1>Resident Move-InRecord and Agreement</h1>
 
   <%= form_for :anything, url: "submit_form" do |f| %>
-    <div class="form-group row">
+    <div class="form-group row top-buffer">
       <div class="col">
         <%= f.text_field :community_name, class: "form-control", placeholder: "Community Name", :required => true %>
       </div>
@@ -14,9 +14,9 @@
       </div>
       <div class="col-md-3">
         <%= f.text_field :pharmacy_name, class: "form-control", placeholder: "Pharmacy Name", :required => true %>
-        </div>
+      </div>
     </div>
-    <div class="form-group row">
+    <div class="form-group row top-buffer">
       <div class="col-md-6">
         <%= f.label :primary_pharmacy do %>
           <%= f.check_box :primary_pharmacy %>
@@ -30,9 +30,356 @@
         <% end %>
       </div>
     </div>
-      <%= f.text_field :car, :required => true %>
-      <%= f.text_field :address, :required => true %>
-      <%= f.submit %>
+    <div class="form-group row top-buffer">
+      <div class="col-md-12">
+        <b>I. Resident Information. Please verify all information is correct.</b>
+          <%= f.label :correct_info do %>
+            <%= f.check_box :correct_info, {}, 'Yes', 'No' %> <sup>(Leave blank for incomplete information)</sup>
+          <% end %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-md-3">
+        <%= f.text_field :patient_first_name, class: "form-control", placeholder: "Patient First Name", :required => true %>
+      </div>
+      <div class="col-md-3">
+        <%= f.text_field :patient_last_name, class: "form-control", placeholder: "Patient Last Name", :required => true %>
+      </div>
+      <div class="col-md-3">
+        <%= f.text_field :patient_middle_initial, class: "form-control", placeholder: "Patient Middle Initial" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-md-3">
+        <%= f.text_field :ssn, class: "form-control", placeholder: "Social Security Number" %>
+      </div>
+      <div class="col-md-3">
+        <%= f.text_field :dob, class: "form-control", placeholder: "Date of Birth" %>
+      </div>
+      <div class="col-md-3 rad-button-container">
+        <%= f.label :gender, class: "rad-label" do %>
+        <b>Sex:</b> Male <%= f.radio_button :gender, "Male" %>
+        Female <%= f.radio_button :gender, "Female" %>
+        <% end %>
+      </div>
+      <div class="col-md-3">
+        <%= f.text_field :phone_number, class: "form-control", placeholder: "Phone Number" %>
+      </div>
+    </div>
+
+    <div class="form-group row top-buffer">
+      <div class="col-md-12 rad-button-container">
+        <b> Resident is solely responsible for the financial and legal authorizations:</b>
+        <%= f.label :resident_responsibility, class: "rad-label" do %>
+        <%= f.radio_button :resident_financially_responsible, "Yes" %> <b>Yes</b>
+        <%= f.radio_button :resident_financially_responsible, "No" %><b> No  If NO, please list the Legal Representative below:</b>
+        <% end %>
+      </div>
+      <div class="col-md-3">
+        <%= f.text_field :representative_first_name, class: "form-control", placeholder: "Representative First Name" %>
+      </div>
+      <div class="col-md-3">
+        <%= f.text_field :representative_last_name, class: "form-control", placeholder: "Representative Last Name" %>
+      </div>
+      <div class="col-md-3">
+        <%= f.text_field :relationship_to_resident, class: "form-control", placeholder: "Relationship to Resident" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-md-12 top-buffer">
+        <%= f.text_field :legal_representative_address, class: "form-control", placeholder: "Legal Representative Address" %>
+      </div>
+    </div>
+    <div class="form-group row top-buffer">
+      <div class="col-md-3">
+        <%= f.text_field :legal_rep_city, class: "form-control", placeholder: "Legal Representative City" %>
+      </div>
+      <div class="col-md-3">
+        <%= f.text_field :legal_rep_state, class: "form-control", placeholder: "Legal Representative State" %>
+      </div>
+      <div class="col-md-3">
+        <%= f.text_field :legal_rep_zip, class: "form-control", placeholder: "Legal Representative Zip" %>
+      </div>
+      <div class="col-md-3">
+        <%= f.text_field :legal_rep_phone_number, class: "form-control", placeholder: "Legal Representative Phone Number" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-md-12">
+        <i>* A Legal Representative is a person who has been granted the authority in writing by either the Resident or a court of law to make
+            medical and/or financial decisions on behalf of the Resident.</i>
+      </div>
+    </div>
+
+    <div class="form-group row top-buffer">
+      <div class="col-md-12">
+        <b>II. Non-Covered Medication.</b><br />
+        Please indicate the preferred method for handling medications not covered by insurance.
+      </div>
+      <div class="col-md-12 rad-button-container">
+        <%= f.label :non_covered_medication, class: "" do %>
+          <%= f.radio_button :non_covered_medication, "Dispense all medications (Prescription and Over-the-Counter, whether covered by insurance or not)" %>
+          Dispense all medications (Prescription and Over-the-Counter, whether covered by insurance or not)<br />
+          <%= f.radio_button :non_covered_medication, "Dispense all covered medications and send a seven-day supply or smallest package size up to $"  %>
+          Dispense all covered medications and send a seven-day supply or smallest package size up to $<%= f.text_field :non_covered_medication_up_to_amount, class: "form-control", id: "non_covered_input" %> <br />
+          <%= f.radio_button :non_covered_medication, "Only dispense prescription medications covered by insurance – ITEMS NOT COVERED BY INSURANCE OR AWAITING AUTOMATION WILL
+          NOT BE DISPENSED" %>
+          Only dispense prescription medications covered by insurance – <b>ITEMS NOT COVERED BY INSURANCE OR AWAITING AUTOMATION WILL
+          NOT BE DISPENSED</b>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-group row top-buffer">
+      <div class="col-md-12">
+        <b>III. Payment Sources for Pharmacy Products and Services</b><br />
+        Please verify all information is correct.
+
+        <%= f.label :resident_responsibility, class: "rad-label" do %>
+        <%= f.radio_button :resident_financially_responsible, "Yes" %> <b>Yes</b>
+        <%= f.radio_button :resident_financially_responsible, "No" %><b> No   (indicate corrections or missing information.) To assist in billing for
+          medications and services provided to the patient while at this community, please check all pay sources that apply:</b>
+        <% end %>
+      </div>
+    </div>
+    <div class="form-group row top-buffer">
+      <div class="col-md-12">
+        <%= f.check_box :no_prescription_insurance %> <b>No prescription insurance</b>
+        <%= f.check_box :medicare_a %> Medicare - A Effective Date: <%= f.date_field :medicare_a_effective_date, as: :date, value: f.object.try(:strftime,"%m/%d/%Y"), class: 'form-control date-field' %>
+        <%= f.check_box :medicare_b %> Medicare - B Effective Date: <%= f.date_field :medicare_b_effective_date, as: :date, value: f.object.try(:strftime,"%m/%d/%Y"), class: 'form-control date-field' %><br />
+        <%= f.check_box :medicare_part_d %> <b>Medicare Part D</b> Plan Name: <%= f.text_field :non_covered_medication_up_to_amount, class: "form-control survey-input" %>
+        Member ID# <%= f.text_field :medicare_part_d_id_number, class: "form-control survey-input"%> BIN/PCN <%= f.text_field :bin_pcn, class: "form-control survey-input"%>
+        Group # <%= f.text_field :part_d_group_number, class: "form-control survey-input"%> Phone Number <%= f.text_field :part_d_phone_number, class: "form-control survey-input"%><br />
+        <%= f.check_box :medicaid %> <b>Medicaid #</b><%= f.text_field :medicaid_number, class: "form-control survey-input"%> State <%= f.text_field :medicaid_state, class: "form-control survey-input"%>
+        Effective Date <%= f.date_field :medicaid_effective_date, as: :date, value: f.object.try(:strftime,"%m/%d/%Y"), class: 'form-control date-field' %><br />
+        <%= f.check_box :other_insurance %> <b>Other Insurance (Name)</b><%= f.text_field :other_insurance_name, class: "form-control survey-input"%>
+        Number <%= f.text_field :other_insurance_number, class: "form-control survey-input"%> Phone Number <%= f.text_field :other_insurance_phone_number, class: "form-control survey-input"%><br />
+        <%= f.check_box :hospice %> Hospice Phone # <%= f.text_field :hospice_phone_number, class: "form-control survey-input"%>
+        <%= f.check_box :veteran_drug_benefit %> Veteran Drug Benefit or
+        <%= f.check_box :other %> Other <%= f.text_field :other_name, class: "form-control survey-input"%> <br />
+        Please describe “Other” and provide pharmacy with copies (FRONT and BACK) of all drug coverage cards. <br /><br />
+        <%= f.check_box :authorization_to_contact %>  Authorization to contact via mobile/cellular device.
+      </div>
+    </div>
+
+    <div class="form-group row top-buffer">
+      <div class="col-md-12">
+        <b>IV. PREFERRED METHOD OF COMMUNICATION?</b><br />
+        <p><span id="right_of_disclosures">Patient’s rights of disclosures:</span> In general, the HIPAA privacy rule gives the individuals the right to request restriction on uses and
+        disclosures of health information. The individual is also provided the right to request confidential communications of health information be
+        made by alternative means.</p>
+        <p>I, <%= f.text_field :method_of_comm_name, class: "form-control survey-input"%>, which to be contacted in the following manner:</p>
+        <b>Home</b><br />
+        <%= f.check_box :home_detailed_message %> Ok to leave a detailed message <br />
+        <%= f.check_box :home_message_callback_number_only %> Leave message with callback number only<br />
+
+        <b>Cellphone</b><br />
+        <%= f.check_box :cellphone_detailed_message %> Ok to leave a detailed message <br />
+        <%= f.check_box :cellphone_detailed_message %> Leave message with callback number only <br />
+
+        <b>Work</b><br />
+        <%= f.check_box :work_detailed_message %> Ok to leave a detailed message <br />
+        <%= f.check_box :work_detailed_message %> Leave message with callback number only <br />
+
+        <b>Written Communication</b><br />
+        <%= f.check_box :mail_to_home %> OK to mail to home <br />
+        <%= f.check_box :fax_to_home %> OK to fax to home <%= f.text_field :home_fax_number, class: "form-control survey-input"%> fax number<br />
+        <%= f.check_box :fax_to_work %> OK to fax to work <%= f.text_field :work_fax_number, class: "form-control survey-input"%> fax number<br /><br />
+
+        <p>List all persons in your household who, in your absence, may make requests on your behalf, and with whom we may speak regarding your
+          medical information.</p>
+
+        <b>Name/Realationship</b>
+        <%= f.text_field :household_rep_1, class: "form-control"%>
+        <%= f.text_field :household_rep_2, class: "form-control"%>
+        <%= f.text_field :household_rep_3, class: "form-control"%>
+        <br /><br />
+        Patient Signature <%= f.text_field :patient_signature, class: "form-control survey-input"%>
+        Date <%= f.date_field :patient_sign_date, as: :date, value: f.object.try(:strftime,"%m/%d/%Y"), class: 'form-control date-field' %>
+
+        <br /><br />
+
+        <p id="legal_rep_sentence">By signing below, the Resident or their Legal Representative and the Financially Responsible Party acknowledge and agree
+          to each of the terms described on this document.</p>
+        Financially Responsible Party Name <%= f.text_field :financially_responsible_name, class: "form-control survey-input"%>
+        Financially Responsible Party Name <%= f.text_field :financially_responsible_signature, class: "form-control survey-input"%>
+        Date: <%= f.date_field :financially_responsible_sign_date, as: :date, value: f.object.try(:strftime,"%m/%d/%Y"), class: 'form-control date-field' %>
+
+        <p id="legal_rep_sentence">NOTE: If Resident has personally signed, it is not necessary to complete the information below. If the Resident is physically
+          unable to sign, and authorized Representative may sign on his/her behalf, but must complete all information, including the
+          Resident’s medical reason for an inability to sign.
+        </p>
+        Medical Reason for Patient's inability to Sign:
+        <%= f.text_field :patient_inability_to_sign_reason, class: "form-control"%>
+      </div>
+    </div>
+
+    <div class="form-group row top-buffer">
+      <div class="col-md-12">
+        <b>Credit Card Authorization Form</b>
+        Date: <%= f.date_field :credit_card_authorization_date, as: :date, value: f.object.try(:strftime,"%m/%d/%Y"), class: 'form-control date-field' %>
+        <p>I, <%= f.text_field :cardholder_authorization_signature, class: "form-control survey-input"%>,  as the individual cardholder, I hereby authorize this card to be charged for
+          the balance of charges not paid by the insurance company.</p>
+        Name of Resident: <%= f.text_field :cardholder_name_of_resident, class: "form-control survey-input"%><br /><br />
+        <h6>Credit Card Information: </h6>
+
+        <p>Name as it appears on the Card: <%= f.text_field :cardholder_name, class: "form-control survey-input"%></p>
+        Type of Card:
+        <%= f.label :type_of_card, class: "rad-label" do %>
+        <%= f.radio_button :type_of_card, "Visa" %> Visa |
+        <%= f.radio_button :type_of_card, "Master Card" %> Master Card |
+        <%= f.radio_button :type_of_card, "Discover" %> Discover |
+        <%= f.radio_button :type_of_card, "American Express" %> American Express
+        <% end %>
+        <br />
+        <p>Credit Card Number: <%= f.text_field :card_number, class: "form-control", id: "cc"%> Expiration Date:
+        <%= f.text_field :credit_card_expiration_date, class: "form-control", id: "cc_expiration", placeholder: "MM / YY" %></p>
+        Security Code on back of <strong>VISA</strong> or <strong>MASTERCARD</strong>(3 digits): <%= f.text_field :visa_mastercard_sc, class: "form-control survey-input"%><br />
+        Security Code on front of <strong>AMERICAN EXPRESS</strong>(3 digits): <%= f.text_field :amex_sc, class: "form-control survey-input"%><br />
+        Credit Card Billing Address: Street: <%= f.text_field :cc_billing_street, class: "form-control"%><br />
+        City: <%= f.text_field :cc_city, class: "form-control survey-input"%> State: <%= f.text_field :cc_state, class: "form-control survey-input"%>
+        Zip Code: <%= f.text_field :cc_zip_code, class: "form-control survey-input"%> Telephone: <%= f.text_field :cc_phone, class: "form-control survey-input"%><br /><br />
+
+        <p><b>Cardholder or Company Representative Signature:</b> <%= f.text_field :cardholder_rep_signature, class: "form-control survey-input"%>
+        Date: <%= f.date_field :cardholder_rep_sign_date, as: :date, value: f.object.try(:strftime,"%m/%d/%Y"), class: 'form-control date-field' %></p>
+
+        <p>I hereby authorize this card to be used for the future balances on a monthly basis not to exceed <%= f.text_field :card_max_per_month, class: "form-control survey-input"%> per month.
+        Authorization in place until <%= f.date_field :card_payment_end_date, as: :date, value: f.object.try(:strftime,"%m/%d/%Y"), class: 'form-control date-field' %></p>
+
+        <p>I understand that this form is valid for the time specified above unless I cancel the authorization through written notice to
+            Polaris Pharmacy Services, LLC.</p>
+
+        <p><b>Sign to authorize future charges:</b></p>
+        <p><%= f.text_field :cardholder_rep_signature_2, class: "form-control survey-input"%> Cardholder's Name: <%= f.text_field :cardholder_rep_name_2, class: "form-control survey-input"%></p>
+        <small><i>Note that balances will be charged after statements have been received by customers to allow for the communication of any issues/concerns. Polaris Pharmacy
+          Services will automatically process payments in accordance with instructions outlined above before the next statement is generated unless otherwise instructed</i></small>
+      </div>
+    </div>
+
+    <div class="form-group row top-buffer">
+      <div class="col-md-12">
+        <p><small><strong>1. Authorizations.</strong> Polaris Pharmacy Services and its subsidiaries
+        (”Polaris”) are authorized to provide the Resident all products and
+        services prescribed or ordered by the Resident’s Physician, or other
+        legally-authorized prescriber, or by the Residence. TheResident
+        requests the products provided by Polaris be dispensed in containers
+        that are not child resistant. The Resident requests that the Residence
+        and/or Polaris dispose of, or otherwise process, all unused and/or
+        discontinued medications dispensed to the Resident, according to
+        Residence and pharmacy policy as allowed by professional standards
+        and regulations.</small></p>
+
+        <p><small><strong>2. Legal representative.</strong> Legal Representatives will provide Polaris with
+        documentation establishing their legal authority to enter into this
+        Agreement. If this Agreement is executed by the Legal Representative,
+        the Legal Representative hereby affirms that s/he has the authority to
+        enter into Agreements on the Resident’s behalf.</small></p>
+
+        <p><small><strong>3. Health Care representative.</strong> Any individuals who are authorized to
+        make health care decisions on behalf of the Resident will provide Polaris
+        with documentation establishing their legal authority to do so. The Health
+        Care Representative will immediately notify Polaris in writing of any
+        change to the Resident’s ability to make health care decisions
+        independently.</small></p>
+
+        <p><small><strong>4. Financial responsibility.</strong> The Resident and the Financially
+        Responsible Party, if other than the Resident, shall each be individually
+        and jointly liable for all charges for products and services provided by
+        Polaris and all fees and expenses described herein to the extent that the
+        Financially Responsible Party holds or receives asset and property
+        belonging to the resident. Such services include all services authorized
+        by the Resident or the Resident’s Health Care Representative and may
+        include services not covered by insurance or other third-party payers
+        identified to Polaris.</small></p>
+
+        <p><small><strong>5. Assignment of Benefits.</strong> The Resident or Legal Representative
+        hereby requests and authorizes any third- party payer to make payment
+        directly to Polaris for products and services provided to theResident.</small></p>
+
+        <p><small><strong>6. Payment.</strong> The Resident and Financially Responsible Party are
+        responsible for paying all charges for products and services provided to
+        the Resident by Polaris which are not covered by insurance or other
+        third-party payers identified to Polaris. As a courtesy, Polaris will submit
+        claims to any insurance companies or other third-party payers listed
+        above or of which Polaris is subsequently notified in writing. Payment in
+        full is due within 30 days of the invoice date, and a finance charge equal
+        to the lesser of 1.5% per month or the maximum rate permitted by law
+        will accrue on all delinquent accounts beginning on the day after the
+        payment is due. The Resident or their Legal Representative and/or the
+        Financially Responsible Party hereby authorize Polaris to charge any
+        credit card or bank account number identified above for any amounts
+        owed.</small></p>
+
+        <p><small><strong>7. Fees and Expenses.</strong> The Resident and Financially Responsible Party
+        are responsible for paying all costs and expenses incurred by Polaris in
+        the collection of amounts owed and the enforcement of its rights under
+        this agreement, including without limitation, attorneys’ fees, court costs
+        and expenses.</small></p>
+
+        <p><small><strong>8. Delinquent Payment.</strong> The Resident or Legal Representative and
+        Financially Responsible Party acknowledge that if the Resident and
+        Financially Responsible Party are delinquent on payment of any amount
+        owed to Polaris, Polaris may, in its sole discretion, do either or both of
+        the following: (a) condition its continued provision of products and
+        services to the Resident upon Polaris’s receipt of assurance of payment
+        acceptable to Polaris, which may include, without limitation, a
+        requirement that Polaris receive authorization to charge all amounts
+        owed, past and future, to a valid credit card number; and/or (b) suspend
+        or terminate its provision of products and services to the Resident. Such
+        suspension or termination will in no way affect the Resident’s or
+        Financially Responsible Party’s obligations to pay all amounts owed
+        under this agreement, including costs of collection.</small></p>
+
+        <p><small><strong>9. Reliance and Consideration.</strong> Polaris is relying upon the Financially
+        Responsible Party’s agreements herein in determining to provide
+        products and services to the Resident, and Polaris’s provision of
+        products and services to the Resident constitutes good and adequate
+        consideration for Financially Responsible Party’sagreements contained
+        in this agreement.</small></p>
+
+        <p><small><strong>10. Disclosure or Use of resident Information for treatment, Payment,
+        and healthcare operations.</strong> The Resident or Legal Representative
+        hereby authorizes Polaris, its employees, agents and sub-contractors to
+        disclose to Medicare, Medicaid or any other third-party payer any
+        medical or other information needed for payment for all products and
+        services provided by Polaris to the Resident until payment has been
+        made in full. The Resident or Legal Representative further authorizes
+        Polaris, its employees, agents and sub-contractors to use and disclose
+        the Resident’s medical and other information for the provision of
+        products and services, for the business operations of Polaris and for the
+        review of Polaris’s services, including review by accrediting bodies or
+        governmental agencies.</small></p>
+
+        <p><small><strong>11. Modification.</strong> No modification or amendment of this agreement shall
+        be effective unless agreed to in writing by a designated representative of
+        Polaris.</small></p>
+
+        <p><small><strong>12. Successors.</strong> This agreement shall inure to the benefits of, and be
+        binding upon, each party and its respective affiliates, successors and
+        heirs, executors, administrators, insurers, underwriters, and affiliates of
+        the parties.</small></p>
+
+        <p><small><strong>13. Supplier Standards.</strong> The products and/or services provided to you
+        by Polaris and/or its corporate affiliates are subject to the supplier
+        standards contained in the Federal regulations shown at 42 Code of
+        Federal Regulations Section 424.57(c). These standards concern
+        business professional and operational matters (e.g., honoring warranties
+        and hours of operation). The full text of these standards can be obtained
+        at http:// ecfr.gpoaccess.gov. Upon request we will furnish you a written
+        copy of the standards.</small></p>
+
+      </div>
+    </div>
+
+    <div class="form-group row top-buffer pb-5">
+      <div class="col-md-12">
+        <%= f.submit "Submit Survey", class: "btn btn-primary btn-block"%>
+      </div>
+    </div>
 
   <% end %>
 
