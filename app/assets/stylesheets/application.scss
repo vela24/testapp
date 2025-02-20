@@ -132,3 +132,57 @@
     } // .actions input
   } // #sign_in_form
 } // #sign_in
+
+.survey_form_control {
+  .date-field {
+    width: 150px;
+    height: 30px;
+    display: inline-block;
+  }
+  .survey-input {
+    width: 200px;
+    height:30px;
+    display: inline-block;
+  }
+  #cc {
+    width: 300px;
+    height:30px;
+    display: inline-block;
+  } // #cc
+
+  #cc_expiration {
+    width: 90px;
+    height:30px;
+    display: inline-block;
+  }
+  .rad-button-container{
+    position: relative;
+
+    .rad-label {
+      position: absolute;
+      bottom: 0;
+    } // .rad-label
+    .rad-button {
+
+      // position: sticky;
+      // bottom: 0;
+    } // .rad-button
+    #non_covered_input {
+      display: inline-block;
+      width: 150px;
+      height: 20px;
+    } // #non_covered_input
+  } // .rad-button-container
+  .top-buffer {
+    margin-top: 20px;
+
+    #right_of_disclosures {
+      font-weight: 600;
+      text-decoration: underline;
+    } // #right_of_disclosures
+
+    #legal_rep_sentence {
+      font-weight: 600;
+    } // #legal_rep_sentence
+  } // .top-buffer
+} // .survey_form_control
