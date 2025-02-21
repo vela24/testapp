@@ -83,6 +83,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = { host: 'https://sheltered-chamber-99174-f75c82d999a8.herokuapp.com' }
   # config.action_controller.asset_host = "https://sheltered-chamber-99174-f75c82d999a8.herokuapp.com"
+  config.action_controller.default_url_options = { host: 'https://sheltered-chamber-99174-f75c82d999a8.herokuapp.com' }
 
   ActionMailer::Base.smtp_settings = {
     :user_name => ENV['MAILGUN_SMTP_LOGIN'], # This is the string literal 'apikey', NOT the ID of your API key

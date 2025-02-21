@@ -6,6 +6,17 @@ class HomeController < ApplicationController
   end
 
   def users
+
+    #Now creating a QR Code with above products details
+    content = "Hello World."
+
+    #For PNG image
+    @qr_png = RQRCode::QRCode.new(content).as_png
+
+    send_data @qr_png,
+      type: "image/png",
+      disposition: "attachment",
+      filename: "qr_code.png"
   end
 
   def terms_of_service
@@ -15,9 +26,6 @@ class HomeController < ApplicationController
     # redirect_to root_path
   end
   def submit_form
-    # PatientSurveyMailer.signup_survey(params[:anything]).deliver
-    p "checking current user in controller ***************************"
-    p current_user
     TestMailer.hello(params["anything"], current_user).deliver
     redirect_to root_path
   end
