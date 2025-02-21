@@ -81,3 +81,5 @@ group :production do
 end
 
 gem "devise", "~> 4.9"
+
+gem "rqrcode", "~> 2.2"
