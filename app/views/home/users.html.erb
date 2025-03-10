@@ -2,14 +2,23 @@
   <h1>List of users</h1>
   <p>Find me in app/views/home/users.html.erb</p>
 
-  <%= link_to "Dowload Users CSV", home_users_path(format: :csv) %> | 
   <%= link_to "Dowload QR Code", home_users_path(format: :png) %>
+  <% if current_user.admin? %>
+    | <%= link_to "Dowload Users CSV", home_users_path(format: :csv) %>
+  <% end %>
 
-
-  <% @users.each do |user| %>
+  <% if current_user.admin? %>
+    <% @users.each do |user| %>
+      <div class="row">
+        <div class="col-md-12">
+          ID: <%= user.id %>  | Email: <%= user.email %> | Created Date: <%= user.created_at.try(:strftime,"%m/%d/%Y") %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
     <div class="row">
       <div class="col-md-12">
-        <%= user.id %> <%= user.email %> <%= user.created_at.try(:strftime,"%m/%d/%Y") %>
+        ID: <%= current_user.id %> | Email: <%= current_user.email %> | Created Date: <%= current_user.created_at.try(:strftime,"%m/%d/%Y") %>
       </div>
     </div>
   <% end %>
