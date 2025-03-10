@@ -7,6 +7,13 @@ class User < ApplicationRecord
 
   validates_acceptance_of :tos_agreement, allow_nil: false, on: :create
 
+  enum role: [:user, :admin]
+  after_initialize :set_default_role, :if => :new_record?
+
+  def set_default_role
+    self.role ||= :user
+  end
+
   def self.to_csv
     CSV.generate(col_sep: ";") do |csv|
       csv << attribute_names
