@@ -11,7 +11,7 @@ class User < ApplicationRecord
   after_initialize :set_default_role, :if => :new_record?
 
   def set_default_role
-    self.role ||= 1
+    self.role ||= :user
   end
 
   def self.to_csv

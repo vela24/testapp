@@ -53,19 +53,19 @@
 
     <div class="form-group row">
       <div class="col-md-3">
-        <%= f.text_field :ssn, class: "form-control", placeholder: "Social Security Number" %>
+        <%= f.text_field :ssn, class: "form-control", placeholder: "Social Security Number", :required => true %>
       </div>
       <div class="col-md-3">
-        <%= f.text_field :dob, class: "form-control", placeholder: "Date of Birth" %>
+        <%= f.text_field :dob, class: "form-control", placeholder: "Date of Birth", :required => true %>
       </div>
       <div class="col-md-3 rad-button-container">
         <%= f.label :gender, class: "rad-label" do %>
-        <b>Sex:</b> Male <%= f.radio_button :gender, "Male" %>
-        Female <%= f.radio_button :gender, "Female" %>
+        <b>Sex:</b> Male <%= f.radio_button :gender, "Male", :required => true %>
+        Female <%= f.radio_button :gender, "Female", :required => true %>
         <% end %>
       </div>
       <div class="col-md-3">
-        <%= f.text_field :phone_number, class: "form-control", placeholder: "Phone Number" %>
+        <%= f.text_field :phone_number, class: "form-control", placeholder: "Phone Number", :required => true %>
       </div>
     </div>
 
@@ -73,8 +73,8 @@
       <div class="col-md-12 rad-button-container">
         <b> Resident is solely responsible for the financial and legal authorizations:</b>
         <%= f.label :resident_responsibility, class: "rad-label" do %>
-        <%= f.radio_button :resident_financially_responsible, "Yes" %> <b>Yes</b>
-        <%= f.radio_button :resident_financially_responsible, "No" %><b> No  If NO, please list the Legal Representative below:</b>
+        <%= f.radio_button :resident_financially_responsible, "Yes", :required => true %> <b>Yes</b>
+        <%= f.radio_button :resident_financially_responsible, "No", :required => true %><b> No  If NO, please list the Legal Representative below:</b>
         <% end %>
       </div>
       <div class="col-md-3">
@@ -122,12 +122,12 @@
       </div>
       <div class="col-md-12 rad-button-container">
         <%= f.label :non_covered_medication, class: "" do %>
-          <%= f.radio_button :non_covered_medication, "Dispense all medications (Prescription and Over-the-Counter, whether covered by insurance or not)" %>
+          <%= f.radio_button :non_covered_medication, "Dispense all medications (Prescription and Over-the-Counter, whether covered by insurance or not)", :required => true %>
           Dispense all medications (Prescription and Over-the-Counter, whether covered by insurance or not)<br />
-          <%= f.radio_button :non_covered_medication, "Dispense all covered medications and send a seven-day supply or smallest package size up to $"  %>
+          <%= f.radio_button :non_covered_medication, "Dispense all covered medications and send a seven-day supply or smallest package size up to $", :required => true  %>
           Dispense all covered medications and send a seven-day supply or smallest package size up to $<%= f.text_field :non_covered_medication_up_to_amount, class: "form-control", id: "non_covered_input" %> <br />
           <%= f.radio_button :non_covered_medication, "Only dispense prescription medications covered by insurance – ITEMS NOT COVERED BY INSURANCE OR AWAITING AUTOMATION WILL
-          NOT BE DISPENSED" %>
+          NOT BE DISPENSED", :required => true %>
           Only dispense prescription medications covered by insurance – <b>ITEMS NOT COVERED BY INSURANCE OR AWAITING AUTOMATION WILL
           NOT BE DISPENSED</b>
         <% end %>
@@ -140,8 +140,8 @@
         Please verify all information is correct.
 
         <%= f.label :resident_responsibility, class: "rad-label" do %>
-        <%= f.radio_button :resident_financially_responsible, "Yes" %> <b>Yes</b>
-        <%= f.radio_button :resident_financially_responsible, "No" %><b> No   (indicate corrections or missing information.) To assist in billing for
+        <%= f.radio_button :resident_financially_responsible, "Yes", :required => true %> <b>Yes</b>
+        <%= f.radio_button :resident_financially_responsible, "No", :required => true %><b> No   (indicate corrections or missing information.) To assist in billing for
           medications and services provided to the patient while at this community, please check all pay sources that apply:</b>
         <% end %>
       </div>
