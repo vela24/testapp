@@ -1,5 +1,5 @@
 <div class="container-fluid survey_form_control">
-  <h1>Resident Move-InRecord and Agreement</h1>
+  <h1>Resident Move-In Record and Agreement</h1>
 
   <%= form_for :anything, url: "submit_form" do |f| %>
     <div class="form-group row top-buffer">
@@ -18,15 +18,9 @@
     </div>
     <div class="form-group row top-buffer">
       <div class="col-md-6">
-        <%= f.label :primary_pharmacy do %>
-          <%= f.check_box :primary_pharmacy %>
-          Check here if we are your primary pharmacy
-        <% end %>
-      </div>
-      <div class="col-md-6">
-        <%= f.label :emergency_pharmacy do %>
-          <%= f.check_box :emergency_pharmacy %>
-          Check here if we are your "emergency only" pharmacy
+        <%= f.label :type_of_pharmacy, class: "rad-label" do %>
+        <b>Please select if this is your Primary Pharmacy or Emergency Pharmacy:</b> Primary Pharmacy <%= f.radio_button :type_of_pharmacy, "Primary Pharmacy", :required => true %>
+        Emergency Pharmacy <%= f.radio_button :type_of_pharmacy, "Emergency Pharmacy", :required => true %>
         <% end %>
       </div>
     </div>
@@ -72,7 +66,7 @@
     <div class="form-group row top-buffer">
       <div class="col-md-12 rad-button-container">
         <b> Resident is solely responsible for the financial and legal authorizations:</b>
-        <%= f.label :resident_responsibility, class: "rad-label" do %>
+        <%= f.label :resident_financially_responsible, class: "rad-label" do %>
         <%= f.radio_button :resident_financially_responsible, "Yes", :required => true %> <b>Yes</b>
         <%= f.radio_button :resident_financially_responsible, "No", :required => true %><b> No  If NO, please list the Legal Representative below:</b>
         <% end %>
@@ -139,9 +133,9 @@
         <b>III. Payment Sources for Pharmacy Products and Services</b><br />
         Please verify all information is correct.
 
-        <%= f.label :resident_responsibility, class: "rad-label" do %>
-        <%= f.radio_button :resident_financially_responsible, "Yes", :required => true %> <b>Yes</b>
-        <%= f.radio_button :resident_financially_responsible, "No", :required => true %><b> No   (indicate corrections or missing information.) To assist in billing for
+        <%= f.label :all_information_correct, class: "rad-label" do %>
+        <%= f.radio_button :all_information_correct, "Yes", required: true %> <b>Yes</b>
+        <%= f.radio_button :all_information_correct, "No", required: true %><b> No   (indicate corrections or missing information.) To assist in billing for
           medications and services provided to the patient while at this community, please check all pay sources that apply:</b>
         <% end %>
       </div>
