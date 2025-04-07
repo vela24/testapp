@@ -4,14 +4,7 @@
 
   <div class="row">
     <div class=col-md-12">
-      <% if @survey.errors.any? %>
-        <h2>Please see the below errors</h2>
-        <ul>
-          <% @survey.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
-      <% end %>
+      <%= render 'shared/errors' %>
     </div>
   </div>
 
@@ -42,7 +35,7 @@
     </div>
     <div class="form-group row top-buffer">
       <div class="col-md-12">
-        <b>I. Resident Information. Please verify all information is correct. * </b>
+        <b>I. Resident Information. Please verify all information is correct. </b>
           <%= f.label :correct_info do %>
             <%= f.check_box :correct_info, {}, 'Yes', 'No' %> <sup>(Leave blank for incomplete information)</sup>
           <% end %>
@@ -81,7 +74,7 @@
 
     <div class="form-group row top-buffer">
       <div class="col-md-12 rad-button-container">
-        <b> Resident is solely responsible for the financial and legal authorizations: * </b>
+        <b> Resident is solely responsible for the financial and legal authorizations: *</b>
         <%= f.label :resident_financially_responsible, class: "rad-label" do %>
         <%= f.radio_button :resident_financially_responsible, "Yes" %> <b>Yes</b>
         <%= f.radio_button :resident_financially_responsible, "No" %><b> No  If NO, please list the Legal Representative below:</b>

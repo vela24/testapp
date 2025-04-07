@@ -13,3 +13,6 @@ Rails.application.initialize!
 #   :authentication => :plain,
 #   :enable_starttls_auto => true
 # }
+ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
+  html_tag.html_safe
+end
