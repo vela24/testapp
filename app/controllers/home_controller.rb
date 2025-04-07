@@ -38,11 +38,11 @@ class HomeController < ApplicationController
     # redirect_to root_path
     @survey = Survey.new
   end
-  
+
   def submit_form
-    p params["survey"]
     @survey = Survey.new(permitted_params)
     if @survey.save
+      flash[:notice] = "You have successfully completed survey."
       TestMailer.hello(params["survey"], current_user).deliver
       redirect_to root_path
     else
