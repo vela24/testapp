@@ -1,32 +1,48 @@
 <div class="container-fluid survey_form_control">
   <h1>Resident Move-In Record and Agreement</h1>
+  <h5>Required fields are marked with *</h5>
 
-  <%= form_for :anything, url: "submit_form" do |f| %>
+  <div class="row">
+    <div class=col-md-12">
+      <% if @survey.errors.any? %>
+        <h2>Please see the below errors</h2>
+        <ul>
+          <% @survey.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+
+  <%= form_for @survey, url: "submit_form" do |f| %>
+
+
     <div class="form-group row top-buffer">
       <div class="col">
-        <%= f.text_field :community_name, class: "form-control", placeholder: "Community Name", :required => true %>
+        <%= f.text_field :community_name, class: "form-control", placeholder: "Community Name *" %>
       </div>
       <div class="col-md-3">
-        <%= f.text_field :id_number, class: "form-control", placeholder: "ID#", :required => true %>
+        <%= f.text_field :id_number, class: "form-control", placeholder: "ID# *" %>
       </div>
       <div class="col-md-3">
-        <%= f.text_field :move_in_date, class: "form-control", placeholder: "Move in Date", :required => true %>
+        <%= f.text_field :move_in_date, class: "form-control", placeholder: "Move in Date *" %>
       </div>
       <div class="col-md-3">
-        <%= f.text_field :pharmacy_name, class: "form-control", placeholder: "Pharmacy Name", :required => true %>
+        <%= f.text_field :pharmacy_name, class: "form-control", placeholder: "Pharmacy Name *" %>
       </div>
     </div>
     <div class="form-group row top-buffer">
-      <div class="col-md-6">
+      <div class="col-md-12">
         <%= f.label :type_of_pharmacy, class: "rad-label" do %>
-        <b>Please select if this is your Primary Pharmacy or Emergency Pharmacy:</b> Primary Pharmacy <%= f.radio_button :type_of_pharmacy, "Primary Pharmacy", :required => true %>
-        Emergency Pharmacy <%= f.radio_button :type_of_pharmacy, "Emergency Pharmacy", :required => true %>
+        <b>Please select if this is your Primary Pharmacy or Emergency Pharmacy: *</b> Primary Pharmacy <%= f.radio_button :type_of_pharmacy, "Primary Pharmacy" %>
+        Emergency Pharmacy <%= f.radio_button :type_of_pharmacy, "Emergency Pharmacy" %>
         <% end %>
       </div>
     </div>
     <div class="form-group row top-buffer">
       <div class="col-md-12">
-        <b>I. Resident Information. Please verify all information is correct.</b>
+        <b>I. Resident Information. Please verify all information is correct. * </b>
           <%= f.label :correct_info do %>
             <%= f.check_box :correct_info, {}, 'Yes', 'No' %> <sup>(Leave blank for incomplete information)</sup>
           <% end %>
@@ -35,10 +51,10 @@
 
     <div class="form-group row">
       <div class="col-md-3">
-        <%= f.text_field :patient_first_name, class: "form-control", placeholder: "Patient First Name", :required => true %>
+        <%= f.text_field :patient_first_name, class: "form-control", placeholder: "Patient First Name *" %>
       </div>
       <div class="col-md-3">
-        <%= f.text_field :patient_last_name, class: "form-control", placeholder: "Patient Last Name", :required => true %>
+        <%= f.text_field :patient_last_name, class: "form-control", placeholder: "Patient Last Name *" %>
       </div>
       <div class="col-md-3">
         <%= f.text_field :patient_middle_initial, class: "form-control", placeholder: "Patient Middle Initial" %>
@@ -47,28 +63,28 @@
 
     <div class="form-group row">
       <div class="col-md-3">
-        <%= f.text_field :ssn, class: "form-control", placeholder: "Social Security Number", :required => true %>
+        <%= f.text_field :ssn, class: "form-control", placeholder: "Social Security Number *" %>
       </div>
       <div class="col-md-3">
-        <%= f.text_field :dob, class: "form-control", placeholder: "Date of Birth", :required => true %>
+        <%= f.text_field :dob, class: "form-control", placeholder: "Date of Birth *" %>
       </div>
       <div class="col-md-3 rad-button-container">
         <%= f.label :gender, class: "rad-label" do %>
-        <b>Sex:</b> Male <%= f.radio_button :gender, "Male", :required => true %>
-        Female <%= f.radio_button :gender, "Female", :required => true %>
+        <b>Sex: *</b> Male <%= f.radio_button :gender, "Male" %>
+        Female <%= f.radio_button :gender, "Female" %>
         <% end %>
       </div>
       <div class="col-md-3">
-        <%= f.text_field :phone_number, class: "form-control", placeholder: "Phone Number", :required => true %>
+        <%= f.text_field :phone_number, class: "form-control", placeholder: "Phone Number *" %>
       </div>
     </div>
 
     <div class="form-group row top-buffer">
       <div class="col-md-12 rad-button-container">
-        <b> Resident is solely responsible for the financial and legal authorizations:</b>
+        <b> Resident is solely responsible for the financial and legal authorizations: * </b>
         <%= f.label :resident_financially_responsible, class: "rad-label" do %>
-        <%= f.radio_button :resident_financially_responsible, "Yes", :required => true %> <b>Yes</b>
-        <%= f.radio_button :resident_financially_responsible, "No", :required => true %><b> No  If NO, please list the Legal Representative below:</b>
+        <%= f.radio_button :resident_financially_responsible, "Yes" %> <b>Yes</b>
+        <%= f.radio_button :resident_financially_responsible, "No" %><b> No  If NO, please list the Legal Representative below:</b>
         <% end %>
       </div>
       <div class="col-md-3">
@@ -112,16 +128,16 @@
     <div class="form-group row top-buffer">
       <div class="col-md-12">
         <b>II. Non-Covered Medication.</b><br />
-        Please indicate the preferred method for handling medications not covered by insurance.
+        Please indicate the preferred method for handling medications not covered by insurance. *
       </div>
       <div class="col-md-12 rad-button-container">
         <%= f.label :non_covered_medication, class: "" do %>
-          <%= f.radio_button :non_covered_medication, "Dispense all medications (Prescription and Over-the-Counter, whether covered by insurance or not)", :required => true %>
+          <%= f.radio_button :non_covered_medication, "Dispense all medications (Prescription and Over-the-Counter, whether covered by insurance or not)" %>
           Dispense all medications (Prescription and Over-the-Counter, whether covered by insurance or not)<br />
-          <%= f.radio_button :non_covered_medication, "Dispense all covered medications and send a seven-day supply or smallest package size up to $", :required => true  %>
+          <%= f.radio_button :non_covered_medication, "Dispense all covered medications and send a seven-day supply or smallest package size up to $"  %>
           Dispense all covered medications and send a seven-day supply or smallest package size up to $<%= f.text_field :non_covered_medication_up_to_amount, class: "form-control", id: "non_covered_input" %> <br />
           <%= f.radio_button :non_covered_medication, "Only dispense prescription medications covered by insurance – ITEMS NOT COVERED BY INSURANCE OR AWAITING AUTOMATION WILL
-          NOT BE DISPENSED", :required => true %>
+          NOT BE DISPENSED" %>
           Only dispense prescription medications covered by insurance – <b>ITEMS NOT COVERED BY INSURANCE OR AWAITING AUTOMATION WILL
           NOT BE DISPENSED</b>
         <% end %>
@@ -131,11 +147,11 @@
     <div class="form-group row top-buffer">
       <div class="col-md-12">
         <b>III. Payment Sources for Pharmacy Products and Services</b><br />
-        Please verify all information is correct.
+        Please verify all information is correct. *
 
         <%= f.label :all_information_correct, class: "rad-label" do %>
-        <%= f.radio_button :all_information_correct, "Yes", required: true %> <b>Yes</b>
-        <%= f.radio_button :all_information_correct, "No", required: true %><b> No   (indicate corrections or missing information.) To assist in billing for
+        <%= f.radio_button :all_information_correct, "Yes" %> <b>Yes</b>
+        <%= f.radio_button :all_information_correct, "No" %><b> No   (indicate corrections or missing information.) To assist in billing for
           medications and services provided to the patient while at this community, please check all pay sources that apply:</b>
         <% end %>
       </div>
@@ -143,13 +159,13 @@
     <div class="form-group row top-buffer">
       <div class="col-md-12">
         <%= f.check_box :no_prescription_insurance %> <b>No prescription insurance</b>
-        <%= f.check_box :medicare_a %> Medicare - A Effective Date: <%= f.date_field :medicare_a_effective_date, as: :date, value: f.object.try(:strftime,"%m/%d/%Y"), class: 'form-control date-field' %>
-        <%= f.check_box :medicare_b %> Medicare - B Effective Date: <%= f.date_field :medicare_b_effective_date, as: :date, value: f.object.try(:strftime,"%m/%d/%Y"), class: 'form-control date-field' %><br />
-        <%= f.check_box :medicare_part_d %> <b>Medicare Part D</b> Plan Name: <%= f.text_field :non_covered_medication_up_to_amount, class: "form-control survey-input" %>
+        <%= f.check_box :medicare_a %> Medicare - A Effective Date: <%= f.date_field :medicare_a_effective_date, as: :date, value: f.object.try(:strftime,"%m/%d/%Y").to_d, class: 'form-control date-field' %>
+        <%= f.check_box :medicare_b %> Medicare - B Effective Date: <%= f.date_field :medicare_b_effective_date, as: :date, value: f.object.try(:strftime,"%m/%d/%Y").to_d, class: 'form-control date-field' %><br />
+        <%= f.check_box :medicare_part_d %> <b>Medicare Part D</b> Plan Name: <%= f.text_field :medicare_part_d_up_to_amount, class: "form-control survey-input" %>
         Member ID# <%= f.text_field :medicare_part_d_id_number, class: "form-control survey-input"%> BIN/PCN <%= f.text_field :bin_pcn, class: "form-control survey-input"%>
         Group # <%= f.text_field :part_d_group_number, class: "form-control survey-input"%> Phone Number <%= f.text_field :part_d_phone_number, class: "form-control survey-input"%><br />
         <%= f.check_box :medicaid %> <b>Medicaid #</b><%= f.text_field :medicaid_number, class: "form-control survey-input"%> State <%= f.text_field :medicaid_state, class: "form-control survey-input"%>
-        Effective Date <%= f.date_field :medicaid_effective_date, as: :date, value: f.object.try(:strftime,"%m/%d/%Y"), class: 'form-control date-field' %><br />
+        Effective Date <%= f.date_field :medicaid_effective_date, as: :date, value: f.object.try(:strftime,"%m/%d/%Y").to_d, class: 'form-control date-field' %><br />
         <%= f.check_box :other_insurance %> <b>Other Insurance (Name)</b><%= f.text_field :other_insurance_name, class: "form-control survey-input"%>
         Number <%= f.text_field :other_insurance_number, class: "form-control survey-input"%> Phone Number <%= f.text_field :other_insurance_phone_number, class: "form-control survey-input"%><br />
         <%= f.check_box :hospice %> Hospice Phone # <%= f.text_field :hospice_phone_number, class: "form-control survey-input"%>
@@ -193,7 +209,7 @@
         <%= f.text_field :household_rep_3, class: "form-control"%>
         <br /><br />
         Patient Signature <%= f.text_field :patient_signature, class: "form-control survey-input"%>
-        Date <%= f.date_field :patient_sign_date, as: :date, value: f.object.try(:strftime,"%m/%d/%Y"), class: 'form-control date-field' %>
+        Date <%= f.date_field :patient_sign_date, as: :date, value: f.object.try(:strftime,"%m/%d/%Y").to_d, class: 'form-control date-field' %>
 
         <br /><br />
 
@@ -201,7 +217,7 @@
           to each of the terms described on this document.</p>
         Financially Responsible Party Name <%= f.text_field :financially_responsible_name, class: "form-control survey-input"%>
         Financially Responsible Party Name <%= f.text_field :financially_responsible_signature, class: "form-control survey-input"%>
-        Date: <%= f.date_field :financially_responsible_sign_date, as: :date, value: f.object.try(:strftime,"%m/%d/%Y"), class: 'form-control date-field' %>
+        Date: <%= f.date_field :financially_responsible_sign_date, as: :date, value: f.object.try(:strftime,"%m/%d/%Y").to_d, class: 'form-control date-field' %>
 
         <p id="legal_rep_sentence">NOTE: If Resident has personally signed, it is not necessary to complete the information below. If the Resident is physically
           unable to sign, and authorized Representative may sign on his/her behalf, but must complete all information, including the
@@ -215,7 +231,7 @@
     <div class="form-group row top-buffer">
       <div class="col-md-12">
         <b>Credit Card Authorization Form</b>
-        Date: <%= f.date_field :credit_card_authorization_date, as: :date, value: f.object.try(:strftime,"%m/%d/%Y"), class: 'form-control date-field' %>
+        Date: <%= f.date_field :credit_card_authorization_date, as: :date, value: f.object.try(:strftime,"%m/%d/%Y").to_d, class: 'form-control date-field' %>
         <p>I, <%= f.text_field :cardholder_authorization_signature, class: "form-control survey-input"%>,  as the individual cardholder, I hereby authorize this card to be charged for
           the balance of charges not paid by the insurance company.</p>
         Name of Resident: <%= f.text_field :cardholder_name_of_resident, class: "form-control survey-input"%><br /><br />
@@ -239,10 +255,10 @@
         Zip Code: <%= f.text_field :cc_zip_code, class: "form-control survey-input"%> Telephone: <%= f.text_field :cc_phone, class: "form-control survey-input"%><br /><br />
 
         <p><b>Cardholder or Company Representative Signature:</b> <%= f.text_field :cardholder_rep_signature, class: "form-control survey-input"%>
-        Date: <%= f.date_field :cardholder_rep_sign_date, as: :date, value: f.object.try(:strftime,"%m/%d/%Y"), class: 'form-control date-field' %></p>
+        Date: <%= f.date_field :cardholder_rep_sign_date, as: :date, value: f.object.try(:strftime,"%m/%d/%Y").to_d, class: 'form-control date-field' %></p>
 
         <p>I hereby authorize this card to be used for the future balances on a monthly basis not to exceed <%= f.text_field :card_max_per_month, class: "form-control survey-input"%> per month.
-        Authorization in place until <%= f.date_field :card_payment_end_date, as: :date, value: f.object.try(:strftime,"%m/%d/%Y"), class: 'form-control date-field' %></p>
+        Authorization in place until <%= f.date_field :card_payment_end_date, as: :date, value: f.object.try(:strftime,"%m/%d/%Y").to_d, class: 'form-control date-field' %></p>
 
         <p>I understand that this form is valid for the time specified above unless I cancel the authorization through written notice to
             Polaris Pharmacy Services, LLC.</p>
