@@ -34,6 +34,14 @@ class HomeController < ApplicationController
   def terms_of_service
   end
 
+  def qr_code_page
+    #Now creating a QR Code with above products details
+    content = Rails.env.development? ? "http://localhost:3000/users/sign_up" : "https://sheltered-chamber-99174-f75c82d999a8.herokuapp.com/users/sign_up"
+    #For PNG image
+    # @qr_png = RQRCode::QRCode.new(content).as_png
+    @qr_code = RQRCode::QRCode.new(content).as_png
+  end
+
   def patient_survey
     # redirect_to root_path
     @survey = Survey.new
